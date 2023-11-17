@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +20,7 @@ class LoginPage extends StatelessWidget {
         SizedBox(
             width: MediaQuery.of(context).size.width * .9,
             child: TextFormField(
-              controller: _emailController,
+              controller: emailController,
               decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   label: Text("Please enter email")),
@@ -30,7 +31,8 @@ class LoginPage extends StatelessWidget {
         SizedBox(
             width: MediaQuery.of(context).size.width * .9,
             child: TextFormField(
-              controller: _passwordController,
+              controller: passwordController,
+              obscureText: true,
               decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   label: Text("Please enter password")),
@@ -83,7 +85,11 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text("Don't have an account?"),
-            TextButton(onPressed: () {}, child: const Text("Sign Up"))
+            TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "/signup");
+                },
+                child: const Text("Sign Up"))
           ],
         ),
       ]),
