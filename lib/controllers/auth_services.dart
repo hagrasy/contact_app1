@@ -19,7 +19,7 @@ class AuthService {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      return "Logged in Successfully!";
+      return "Logged in Successfully";
     } on FirebaseAuthException catch (e) {
       return e.message.toString();
     }

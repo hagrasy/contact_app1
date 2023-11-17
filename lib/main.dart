@@ -31,7 +31,7 @@ class ContactApp extends StatelessWidget {
             useMaterial3: true,
           ),
           routes: {
-            "/": (context) => LoginPage(),
+            "/": (context) => const  CheckUser(),
             "/signup": (context) => SignUpPage(),
             "/login": (context) => LoginPage(),
             "/home": (context) => const Home(),
