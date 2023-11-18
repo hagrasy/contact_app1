@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
 // create new account using email password method
@@ -35,5 +36,30 @@ class AuthService {
   Future<bool> isLoggedIn() async {
     var user = FirebaseAuth.instance.currentUser;
     return user != null;
+  }
+
+// for login with google
+
+  Future<String> continueWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+// send auth request
+      final GoogleSignInAuthentication gAuth = await googleUser!.authentication;
+
+// obtain a new credential
+      final creds = GoogleAuthProvider.credential(
+        accessToken: gAuth.accessToken,
+        idToken: gAuth.idToken,
+      );
+
+// signin with the credential
+
+      await FirebaseAuth.instance.signInWithCredential(creds);
+
+      return "Google Login Successful";
+    } on FirebaseAuthException catch (e) {
+      return e.message.toString();
+    }
   }
 }

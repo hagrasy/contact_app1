@@ -90,7 +90,27 @@ class SignUpPage extends StatelessWidget {
             height: 60,
             width: MediaQuery.of(context).size.width * .9,
             child: OutlinedButton(
-                onPressed: () {},
+                onPressed: () {AuthService().continueWithGoogle().then((value) {
+
+if(value == "Google Login Successful"){
+ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: const Text("Google account logged in successfully"),
+                            backgroundColor: Colors.green.shade400,
+                          ));
+                          Navigator.pushReplacementNamed(context, "/home");
+
+}
+else {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(
+                              value,
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                            backgroundColor: Colors.red.shade400,
+                          ));
+                        } 
+
+                  });},
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
