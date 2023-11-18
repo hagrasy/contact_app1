@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:contact_app1/controllers/auth_services.dart';
 import 'package:contact_app1/controllers/crud_services.dart';
+import 'package:contact_app1/views/update_contact.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -74,6 +75,15 @@ class _HomeState extends State<Home> {
                   Map<String, dynamic> data =
                       document.data()! as Map<String, dynamic>;
                   return ListTile(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UpdateContact(
+                                    docID: document.id,
+                                    name: data["name"],
+                                    phone: data["phone"],
+                                    email: data["email"],
+                                  ))),
                       leading: CircleAvatar(child: Text(data["name"][0])),
                       title: Text(data["name"]),
                       subtitle: Text(data["phone"]),

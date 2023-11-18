@@ -33,7 +33,47 @@ class CRUDService {
         .collection("users")
         .doc(user!.uid)
         .collection("contacts")
+        .orderBy("name")
         .snapshots();
     yield* contacts;
+  }
+// update a contact
+
+  Future updateContact(
+      String name, String phone, String email, String docID) async {
+    try {
+      Map<String, dynamic> data = {
+        "name": name,
+        "phone": phone,
+        "email": email,
+      };
+
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(user!.uid)
+          .collection("contacts")
+          .doc(docID)
+          .update(data);
+
+      print("Document Updated");
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+// delete contact from firestore
+
+  Future deleteContact(String docID) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(user!.uid)
+          .collection("contacts")
+          .doc(docID)
+          .delete();
+      print('Contact deleted');
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }
