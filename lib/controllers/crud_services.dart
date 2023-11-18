@@ -25,4 +25,15 @@ class CRUDService {
       print(e.toString());
     }
   }
+
+  // read the documents inside firestore
+
+  Stream<QuerySnapshot> getContacts() async* {
+    var contacts = FirebaseFirestore.instance
+        .collection("users")
+        .doc(user!.uid)
+        .collection("contacts")
+        .snapshots();
+    yield* contacts;
+  }
 }

@@ -1,5 +1,5 @@
 import 'package:contact_app1/firebase_options.dart';
-import 'package:contact_app1/views/contact_page.dart';
+import 'package:contact_app1/views/add_contact_page.dart';
 import 'package:contact_app1/views/home.dart';
 import 'package:contact_app1/views/login_page.dart';
 import 'package:contact_app1/views/signup_page.dart';
