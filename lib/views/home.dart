@@ -16,6 +16,11 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: const Text("Contacts"),
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, "/add");
+          },
+          child: const Icon(Icons.person_add)),
       drawer: Drawer(
           child: ListView(
         children: [

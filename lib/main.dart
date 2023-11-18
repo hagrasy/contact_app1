@@ -1,4 +1,5 @@
 import 'package:contact_app1/firebase_options.dart';
+import 'package:contact_app1/views/contact_page.dart';
 import 'package:contact_app1/views/home.dart';
 import 'package:contact_app1/views/login_page.dart';
 import 'package:contact_app1/views/signup_page.dart';
@@ -35,6 +36,7 @@ class ContactApp extends StatelessWidget {
             "/signup": (context) => SignUpPage(),
             "/login": (context) => LoginPage(),
             "/home": (context) => const Home(),
+            "/add": (context) => const AddContact(),
           }),
     );
   }
